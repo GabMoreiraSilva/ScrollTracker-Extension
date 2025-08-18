@@ -1,0 +1,19 @@
+{
+	"manifest_version": 3,
+	"version": "0.0.1",
+	"name": "ScrollsTracker",
+	"description": "Auxiliar a salvar mais rapidamente o seu mangá favorito",
+	"author": "Gabriel Moreira Silva",
+	"action": {
+		"default_title": "ScrollsTracker",
+		"default_popup": "index.html"
+	},
+	"content_scripts": [
+		{
+		"css": ["style.css"],
+		"script": ["action.js"],
+		"matches": ["https://www.google.com/*"]
+		}
+	],
+	"permissions": []
+}

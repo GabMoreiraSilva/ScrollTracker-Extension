@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ScrollsTracker</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="action.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="logo.png" alt="Edge UOL" width="60" class="logo-img">
+    </div>
+    <h1>ScrollsTracker</h1>
+    <div class="inputs">
+      <div class="input-group">
+        <label for="starttime">Início</label>
+        <input type="datetime-local" name="starttime" id="starttime" required>
+      </div>
+      <div class="input-group">
+        <label for="endtime">Fim</label>
+        <input type="datetime-local" name="endtime" id="endtime" required>
+      </div>
+    </div>
+    <button class="btn-submit" id="btnSalvar">Salvar</button>
+	<div id="status"></div>
+  </div>
+</body>
+</html>

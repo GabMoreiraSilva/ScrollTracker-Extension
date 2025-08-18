@@ -1,0 +1,96 @@
+/* Estilo base */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, sans-serif; }
+
+body {
+	background-color: #1F1F1F; /* fundo escuro neutro */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	padding: 20px;
+}
+
+.container {
+	background-color: #FFFFFF;
+	padding: 30px 40px;
+	border-radius: 12px;
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+	width: 100%;
+	max-width: 420px;
+	text-align: center;
+	position: relative;
+}
+
+.logo {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;   /* deixa a imagem circular */
+  object-fit: cover;    /* recorta sem distorcer */
+}
+
+h1 {
+	font-size: 1.5rem;
+	color: #FF6E00; /* laranja da marca */
+	margin-bottom: 20px;
+	margin-top: 40px;
+}
+
+.inputs {
+	display: flex;
+	justify-content: space-between;
+	gap: 16px;
+}
+
+.input-group {
+	flex: 1;
+	text-align: left;
+}
+
+.input-group label {
+	display: block;
+	font-size: 0.75rem;
+	color: #333;
+	margin-bottom: 4px;
+}
+
+.input-group input[type="time"] {
+	width: 100%;
+	padding: 8px;
+	border: 2px solid #CCC;
+	border-radius: 6px;
+	font-size: 0.95rem;
+	transition: 0.3s;
+}
+
+.input-group input[type="time"]:focus {
+	border-color: #FF6E00;
+	outline: none;
+	box-shadow: 0 0 6px rgba(255, 110, 0, 0.4);
+}
+
+.btn-submit {
+	margin-top: 20px;
+	width: 100%;
+	padding: 10px;
+	background-color: #FF6E00;
+	color: white;
+	border: none;
+	border-radius: 6px;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+	background-color: #E65C00;
+}
