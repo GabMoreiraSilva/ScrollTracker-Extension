@@ -1,60 +1,49 @@
 document.addEventListener("DOMContentLoaded", () => {
-const btn = document.getElementById("btnSalvar");
-const status = document.getElementById("status");
+	const btn = document.getElementsByClassName("btn-submit");
+	const status = document.getElementById("status");
 
-	btn.addEventListener("click", () => {
-			const startInput = document.getElementById("starttime").value;
-			const endInput = document.getElementById("endtime").value;
-
-			// Validação: obrigar a preencher
-			if (!startInput || !endInput) {
-			status.textContent = "⚠️ Preencha os dois horários!";
-			status.style.color = "red";
-			return;
+		btn[0].addEventListener("click", () => {
+			const nomeObra = document.getElementById("nomeObra").value
+			const descricao = document.getElementById("descricao").value
+			const capitulos = document.getElementById("capitulos").value
+			const capitulosLidos = document.getElementById("capitulosLidos").value
+			const statusObra = document.getElementById("statusObra").value
+			const statusLeitura = document.getElementById("statusLeitura").value
+			const urlCapa = document.getElementById("urlCapa").value
+			if (!nomeObra || !descricao || !capitulos || !capitulosLidos || !statusObra || !statusLeitura || !urlCapa)
+			{
+				return
 			}
-
-			// Converte para Date
-			const startDate = new Date(startInput);
-			const endDate = new Date(endInput);
-
-			// Validação: início não pode ser depois do fim
-			if (endDate <= startDate) {
-			status.textContent = "⚠️ O horário de término deve ser maior que o de início.";
-			status.style.color = "red";
-			return;
-			}
-
-			// Calcula diferença em milissegundos
-			const diffMs = endDate - startDate;
-
-			// Converte para horas, minutos e segundos
-			const diffHrs = Math.floor(diffMs / (1000 * 60 * 60));
-			const diffMins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-			const diffSecs = Math.floor((diffMs % (1000 * 60)) / 1000);
-
-			status.textContent = `✅ Diferença: ${diffHrs}h ${diffMins}m ${diffSecs}s`;
-			status.style.color = "green";
-			salvarNoBanco(diffMs);
+			status_code = salvarNoBanco(nomeObra, descricao, capitulos, capitulosLidos, statusObra, statusLeitura, urlCapa);
 		});
 
-	async function salvarNoBanco(totalHoras) {
-		try {
-			const response = await fetch("http://localhost:3000/registros", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify({
-					total: totalHoras,
-					criadoEm: new Date().toISOString()
-				})
-			});
+		async function salvarNoBanco(nomeObra, descricao, capitulos, capitulosLidos, statusObra, statusLeitura, urlCapa) {
+			try {
+				const response = await fetch("http://localhost:5000/api/ScrollsTracker/CadastrarObra", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({
+						titulo: nomeObra,
+						descricao: descricao,
+						totalCapitulos: capitulos,
+						ultimoCapituloLido: capitulosLidos,
+						imagem: urlCapa,
+						status: statusObra,
+						statusLeitura: statusLeitura
+					})
+				});
 
-			if (!response.ok) throw new Error("Erro ao enviar para o servidor");
-			const data = await response.json();
-			console.log("✅ Registro salvo:", data);
-		} catch (error) {
-			console.error("❌ Erro:", error);
+				if (!response.ok) throw new Error("Erro ao enviar para o servidor");
+				status.textContent = "✅ Registro salvo"
+				status.style.color = "green"
+				const data = await response.json();
+				console.log("✅ Registro salvo:", JSON.stringify(data));
+			} catch (error) {
+				status.textContent = "❌ Erro ao tentar enviar"
+				status.style.color = "red"
+				console.error("❌ Erro:", error);
+			}
 		}
-	}
 });

@@ -13,17 +13,59 @@
       <img src="logo.png" alt="Edge UOL" width="60" class="logo-img">
     </div>
     <h1>ScrollsTracker</h1>
-    <div class="inputs">
-      <div class="input-group">
-        <label for="starttime">Início</label>
-        <input type="datetime-local" name="starttime" id="starttime" required>
+    <form>
+      <div class="form-grid">
+        <div class="input-group">
+          <input type="text" id="nomeObra" placeholder=" " required>
+          <label for="nomeObra">Nome da Obra</label>
+        </div>
+
+        <div class="input-group">
+          <input type="text" id="descricao" placeholder=" " required>
+          <label for="descricao">Descrição</label>
+        </div>
+
+        <div class="input-group">
+          <input type="number" id="capitulos" placeholder=" " required>
+          <label for="capitulos">Total de capítulos</label>
+        </div>
+
+        <div class="input-group">
+          <input type="number" id="capitulosLidos" placeholder=" " required>
+          <label for="capitulosLidos">Capítulos lidos</label>
+        </div>
+
+        <div class="input-group">
+          <select id="statusObra" placeholder=" " required>
+            <option value="" disabled selected hidden></option>
+            <option value="concluida">Concluída</option>
+            <option value="dropada">Dropada</option>
+            <option value="andamento">Em andamento</option>
+            <option value="hiato">Hiato</option>
+          </select>
+          <label for="statusObra">Status Obra</label>
+        </div>
+
+        <div class="input-group">
+          <select id="statusLeitura" placeholder=" " required>
+            <option value="" disabled selected hidden></option>
+            <option value="lendo">Lendo</option>
+            <option value="completo">Completo</option>
+            <option value="planejoLer">Planejo Ler</option>
+            <option value="pausado">Pausado</option>
+            <option value="abandonado">Abandonado</option>
+          </select>
+          <label for="statusLeitura">Status Leitura</label>
+        </div>
+
+        <div class="input-group input-full">
+          <input type="url" id="urlCapa" placeholder=" " required>
+          <label for="urlCapa">Url da capa</label>
+        </div>
       </div>
-      <div class="input-group">
-        <label for="endtime">Fim</label>
-        <input type="datetime-local" name="endtime" id="endtime" required>
-      </div>
-    </div>
-    <button class="btn-submit" id="btnSalvar">Salvar</button>
+
+      <button class="btn-submit">Salvar</button>
+    </form>
 	<div id="status"></div>
   </div>
 </body>

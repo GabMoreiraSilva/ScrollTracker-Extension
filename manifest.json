@@ -8,11 +8,14 @@
 		"default_title": "ScrollsTracker",
 		"default_popup": "index.html"
 	},
+	"icons": {
+		"16": "logo.png"
+	},
 	"content_scripts": [
 		{
 		"css": ["style.css"],
 		"script": ["action.js"],
-		"matches": ["https://www.google.com/*"]
+		"matches": ["https://www.exempl.com/"]
 		}
 	],
 	"permissions": []
