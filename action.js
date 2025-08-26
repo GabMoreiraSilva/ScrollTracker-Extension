@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 	const btn = document.getElementsByClassName("btn-submit");
-	const status = document.getElementById("status");
 
 		btn[0].addEventListener("click", () => {
 			const nomeObra = document.getElementById("nomeObra").value
@@ -18,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 
 		async function salvarNoBanco(nomeObra, descricao, capitulos, capitulosLidos, statusObra, statusLeitura, urlCapa) {
+			const status = document.getElementById("status");
 			try {
 				const response = await fetch("http://localhost:5000/api/ScrollsTracker/CadastrarObra", {
 					method: "POST",
@@ -25,20 +25,20 @@ document.addEventListener("DOMContentLoaded", () => {
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify({
-						titulo: nomeObra,
-						descricao: descricao,
-						totalCapitulos: capitulos,
-						ultimoCapituloLido: capitulosLidos,
-						imagem: urlCapa,
-						status: statusObra,
-						statusLeitura: statusLeitura
+						titulo: String(nomeObra),
+						descricao: String(descricao),
+						totalCapitulos: String(capitulos),
+						ultimoCapituloLido: String(capitulosLidos),
+						imagem: String(urlCapa),
+						status: String(statusObra),
+						statusLeitura: String(statusLeitura)
 					})
 				});
 
 				if (!response.ok) throw new Error("Erro ao enviar para o servidor");
+				const data = await response.json();
 				status.textContent = "✅ Registro salvo"
 				status.style.color = "green"
-				const data = await response.json();
 				console.log("✅ Registro salvo:", JSON.stringify(data));
 			} catch (error) {
 				status.textContent = "❌ Erro ao tentar enviar"
